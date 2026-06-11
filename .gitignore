@@ -1,0 +1,22 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Output figures and data
+reports/figures/*
+!reports/figures/.gitkeep
+data/
+*.png
+*.jpg
+*.jpeg
+*.svg
