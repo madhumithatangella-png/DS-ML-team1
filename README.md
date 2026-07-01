@@ -1,147 +1,270 @@
-# Predictive Maintenance - Week 3
-## Model Evaluation, Validation & Explainable AI (SHAP)
+# Contextual Predictive Maintenance using IoT Edge AI
 
-## Overview
+## Project Overview
 
-This repository contains my Week 3 contribution for the Predictive Maintenance project.
+This project focuses on developing a Contextual Predictive Maintenance system that predicts machine failures before they occur by combining internal IoT sensor telemetry with contextual environmental features. The solution leverages machine learning techniques to improve maintenance planning, reduce unexpected equipment downtime, and support data-driven industrial decision-making.
 
-The objective of this phase is to improve the reliability and interpretability of the machine failure prediction model by performing detailed model evaluation, validation, and explainability analysis.
-
-Predictive maintenance helps industries reduce unexpected machine failures by using machine sensor data to predict potential failures before they occur.
+The project is being developed as part of an AI & Data Science Internship and follows a structured four-week engineering roadmap.
 
 ---
 
-# Week 3 Objectives
+## Problem Statement
 
-The main goals of this phase were:
+Traditional predictive maintenance models rely only on machine sensor data. However, real-world machine failures are influenced by both internal operating conditions and external environmental factors.
 
-- Evaluate the trained machine learning model performance
-- Analyze classification performance using multiple metrics
-- Validate model stability using cross-validation
-- Understand feature contribution using Explainable AI techniques
-- Identify important factors responsible for machine failures
+This project builds a contextual predictive maintenance pipeline by integrating IoT telemetry with contextual features, followed by advanced machine learning techniques to accurately predict machine failures.
 
 ---
 
-# Work Completed
+## Business Objectives
 
-## 1. Model Evaluation
+- Reduce unexpected machine failures
+- Improve maintenance scheduling
+- Minimize operational downtime
+- Increase equipment reliability
+- Develop an explainable AI-based predictive maintenance solution
 
-The trained predictive maintenance model was evaluated using multiple performance metrics.
+---
 
-The evaluation includes:
+## Dataset
 
-### Classification Report
+**AI4I 2020 Predictive Maintenance Dataset**
 
-The classification report provides:
+The dataset contains industrial machine telemetry including:
 
+- Type
+- Air Temperature
+- Process Temperature
+- Rotational Speed
+- Torque
+- Tool Wear
+- Machine Failure
+
+Additional contextual features are engineered during the project.
+
+---
+
+## Technologies Used
+
+- Python
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- Scikit-learn
+- LightGBM
+- SHAP
+- Joblib
+- Jupyter Notebook
+
+---
+
+# Project Workflow
+
+```
+Data Collection
+        ↓
+Data Cleaning
+        ↓
+Exploratory Data Analysis
+        ↓
+Signal Processing
+        ↓
+Feature Engineering
+        ↓
+Contextual Data Fusion
+        ↓
+SMOTE for Class Balancing
+        ↓
+LightGBM Classification
+        ↓
+Model Evaluation
+        ↓
+SHAP Explainability
+        ↓
+Noise Sensitivity Analysis (In Progress)
+```
+
+---
+
+# Week-wise Progress
+
+## Week 1 – IoT Telemetry Ingestion & Signal Processing
+
+Completed:
+
+- Dataset loading
+- Data cleaning
+- Missing value analysis
+- Exploratory Data Analysis
+- Label Encoding
+- Rolling Mean
+- Rolling Standard Deviation
+- Rolling Variance
+- Feature Engineering
+- Data preprocessing
+
+Output:
+
+- `week1_processed_data.csv`
+
+---
+
+## Week 2 – Contextual Data Fusion & Feature Engineering
+
+Completed:
+
+- Added Ambient Temperature
+- Added Humidity
+- Added Factory Load
+- Added Work Shift
+- Feature Encoding
+- Contextual Feature Engineering
+- Correlation Analysis
+- Data Visualization
+
+Output:
+
+- `week2_processed_data.csv`
+
+---
+
+## Week 3 – Imbalanced Classification & LightGBM Modeling
+
+Completed:
+
+- Train-Test Split
+- SMOTE
+- LightGBM Classifier
+- Model Evaluation
+- Classification Report
+- Confusion Matrix
+- Stratified Cross Validation
+- SHAP Explainability
+- Model Saving
+
+Output:
+
+- `predictive_maintenance_model.pkl`
+
+---
+
+## Week 4 – Noise Sensitivity Analysis & Threshold Tuning
+
+Current Progress (July 1)
+
+Completed:
+
+- Week 4 notebook created
+- Required libraries imported
+- Trained model loaded
+- Processed dataset loaded
+- Feature and target preparation
+- Train-test split completed
+- Data prepared for robustness testing
+
+Upcoming Tasks:
+
+- Gaussian Noise Injection
+- Robustness Analysis
+- Precision-Recall Curve
+- Threshold Tuning
+- Final Evaluation
+
+---
+
+# Project Structure
+
+```
+Contextual-Predictive-Maintenance/
+
+│── notebooks/
+│   ├── Week1_IoT_Telemetry_Signal_Processing.ipynb
+│   ├── Week2_Contextual_Data_Fusion.ipynb
+│   ├── Week3_Imbalanced_Classification_LightGBM_Modeling.ipynb
+│   └── Week4_Noise_Sensitivity_Analysis_Threshold_Tuning.ipynb
+
+│── data/
+│   ├── ai4i2020.csv
+│   ├── week1_processed_data.csv
+│   └── week2_processed_data.csv
+
+│── predictive_maintenance_model.pkl
+
+│── images/
+
+│── README.md
+```
+
+---
+
+# Machine Learning Pipeline
+
+- Data Cleaning
+- Feature Engineering
+- Contextual Data Fusion
+- Class Balancing using SMOTE
+- LightGBM Classification
+- Model Evaluation
+- Explainable AI using SHAP
+- Noise Robustness Testing
+
+---
+
+# Model Evaluation Metrics
+
+The model is evaluated using:
+
+- Accuracy
 - Precision
 - Recall
-- F1-score
-- Support
-
-These metrics help understand how well the model identifies machine failures.
-
-### Confusion Matrix
-
-A confusion matrix was generated to analyze:
-
-- Correct failure predictions
-- Incorrect failure predictions
-- False alarms
-- Missed failures
+- Macro F1 Score
+- Confusion Matrix
+- Stratified Cross Validation
+- Precision-Recall Curve (Week 4)
+- SHAP Feature Importance
 
 ---
 
-# 2. Performance Metric - Macro F1 Score
+# Current Project Status
 
-Since predictive maintenance datasets usually contain fewer failure cases compared to normal operating cases, accuracy alone is not sufficient.
-
-Macro F1 score was used because it gives equal importance to both classes:
-
-- Normal machine operation
-- Machine failure
-
-This helps evaluate whether the model performs well on failure detection.
-
----
-
-# 3. Stratified 5-Fold Cross Validation
-
-To ensure reliable model performance, Stratified K-Fold Cross Validation was implemented.
-
-## Why Stratified Validation?
-
-The dataset contains imbalanced classes, where failure cases are fewer than normal cases.
-
-Stratified splitting ensures:
-
-- Each fold contains similar failure/non-failure distribution
-- Performance is measured consistently
-- Model reliability is improved
-
-The model performance was evaluated across 5 different folds and the average F1 score was calculated.
-
----
-
-# 4. Explainable AI using SHAP
-
-To improve model transparency, SHAP (SHapley Additive exPlanations) was implemented.
-
-SHAP helps answer:
-
-"Why did the model predict a machine failure?"
-
-Instead of only providing predictions, SHAP explains the contribution of individual features.
-
----
-
-# SHAP Analysis Provides:
-
-- Important features influencing failure prediction
-- Positive and negative impact of features
-- Individual prediction explanations
-
-The analysis helps identify important machine parameters such as:
-
-- Tool wear
-- Torque
-- Temperature-related features
-- Process measurements
-
----
-
----
-
-# 5. Project Completion Status
-
-The Predictive Maintenance machine learning pipeline has been successfully developed and evaluated.
-
-## Completed Modules
-
-✅ Data preprocessing and cleaning  
-✅ Exploratory Data Analysis (EDA)  
-✅ Machine learning model training  
-✅ Model performance evaluation  
-✅ Classification analysis  
-✅ Stratified cross-validation  
-✅ Explainable AI analysis using SHAP  
-✅ Feature importance analysis  
-✅ Model saving for future predictions  
-
----
-
-# Final Outcome
-
-The developed model can predict potential machine failures using machine sensor parameters and provides insights into the major factors influencing failure predictions.
-
-The integration of model evaluation and SHAP explainability improves both prediction reliability and understanding of model decisions.
+| Phase | Status |
+|--------|--------|
+| Week 1 | ✅ Completed |
+| Week 2 | ✅ Completed |
+| Week 3 | ✅ Completed |
+| Week 4 | 🚧 In Progress |
 
 ---
 
 # Future Improvements
 
-Possible future enhancements:
+- Complete Noise Sensitivity Analysis
+- Decision Threshold Optimization
+- Model Robustness Testing
+- Interactive Dashboard
+- Real-time IoT Data Integration
+- Model Deployment
+
+---
+
+# Author
+
+**Tangella Madhumitha**
+
+Final Year B.Tech Student
+
+AI & Data Science Intern
+
+---
+
+## Repository Status
+
+🚀 Project currently in active development.
+
+**Progress:** Week 4 (Initial Setup Completed)
+
+Expected Completion Date: **6 July 2026**
 
 - Real-time machine sensor monitoring
 - Streamlit-based prediction dashboard
