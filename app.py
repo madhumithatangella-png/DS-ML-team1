@@ -267,4 +267,3 @@ if predict:
     st.info(
         "This prediction is generated using a LightGBM model trained with contextual, engineered, and rolling features."
     )
-)
